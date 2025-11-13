@@ -54,11 +54,11 @@ export const updateProduct: RequestHandler = async (req, res, next) => {
         rating,
         warranty_years,
         available
-      }
+      } as Omit<ProductModel, '_id'>
 
     const productUpdated = await Product.findByIdAndUpdate(id, productData)
     if (!productUpdated) return res.status(404).json({message: "This product doesn't exist."})
-    eventEmitter.emit('updateProduct', {...productData, _id: id});
+    eventEmitter.emit('updateProduct', productData);
     res.status(200).json({})
   } catch (error) {
     next(error)

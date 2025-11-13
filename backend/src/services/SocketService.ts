@@ -19,12 +19,8 @@ export class SocketService {
     this.io.on('connection', this.handleConnection.bind(this));
   }
 
-  get emitter(): EventEmitter {
-    return this.eventEmitter;
-  }
-
-  public emitEvent(eventName: string, eventData: ProductCreatedEvent | ProductUpdatedEvent | ProductDeletedEvent): void {
-    this.io.emit(eventName, eventData);
+  public emitEvent(eventName: string, eventData: ProductCreatedEvent | ProductUpdatedEvent['product'] | ProductDeletedEvent['productId']): void {
+    this.eventEmitter.emit(eventName, eventData);
   }
 
   private handleConnection(socket: Socket): void {

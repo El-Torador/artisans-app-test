@@ -17,7 +17,9 @@ import { SocketService } from './services/SocketService';
 const app = express()
 const server = createServer(app);
 const socketService = new SocketService(server)
-const eventEmitter = socketService.emitter;
+const eventEmitter = {
+  emit: socketService.emitEvent
+};
 
 
 

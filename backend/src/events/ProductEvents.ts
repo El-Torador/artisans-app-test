@@ -5,7 +5,7 @@ export class ProductCreatedEvent {
 }
 
 export class ProductUpdatedEvent {
-  constructor(public readonly product: ProductModel) {}
+  constructor(public readonly product: Omit<ProductModel, '_id'>) {}
 }
 
 export class ProductDeletedEvent {
