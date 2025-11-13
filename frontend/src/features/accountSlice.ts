@@ -6,7 +6,7 @@ import { RootState } from '../store';
 const accountSlice = createSlice({
   name: 'loginSlice',
   initialState: {
-    account: {} as null | null | Account,
+    account: null as null | null | Account,
     error: null as string
   },
   reducers: {

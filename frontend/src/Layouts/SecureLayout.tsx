@@ -9,15 +9,20 @@ import { useSelector } from 'react-redux';
 import { ProductStatus } from '../types';
 import { getTypeAlert } from '../utils';
 import ConfirmGlobal from '../components/Confirm/ConfirmGlobal';
+import { useAccount } from '../hooks/useAccount';
 
 export default function SecureLayout({ children }: { children: JSX.Element }) {
   const dispatch = useDispatch<AppDispatch>();
+  const { account } = useAccount();
 
   const { status, message } = useSelector(selectProducts);
   const handleClose = useCallback(() => {
     void dispatch(closeSnackBar());
   }, [dispatch]);
 
+  if (!account) {
+    return null;
+  }
   return (
     <Box flexGrow={1} style={{ backgroundColor: '#f8fafc' }} height="100vh">
       <Header />

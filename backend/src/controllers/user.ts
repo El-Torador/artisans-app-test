@@ -61,6 +61,6 @@ export const login: RequestHandler = async (req, res, next) => {
 export const logout: RequestHandler = async (req, res, next) => {
   req.session.destroy(error => {
     if (error) next(error)
-    else res.status(200).json(null)
+    else res.clearCookie('connect.sid').status(200).json(null)
   })
 }

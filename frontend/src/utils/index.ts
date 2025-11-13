@@ -20,3 +20,6 @@ import { ProductStatus } from "../types";
 }
 
 export const WS_SERVER_HOST = 'http://localhost:8080'
+export class UnAuthenticatedError extends Error {
+  message: string = "User is not authenticated";
+}
